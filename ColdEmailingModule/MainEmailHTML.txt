@@ -1,0 +1,31 @@
+\
+<html>
+	<head></head>
+	<body>
+		<p>Dear {name},</p>
+
+		<p>Lorem ipsum dolor sit amet, {company} consectetur adipiscing elit. Mauris ut lacinia tellus. Donec ut fermentum elit, eu mollis orci. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		<p>Nunc faucibus metus sit amet dolor tempus elementum. Proin scelerisque dolor eget nibh volutpat, in tincidunt erat tempus. Nam sollicitudin sem id nulla ultricies tempus. Ut a ex sed purus tempor porta non vel justo. Integer elementum dolor ut sem aliquet auctor. Nulla feugiat orci nisl, vel cursus nibh convallis nec. Sed efficitur ex eu magna eleifend, nec dapibus velit malesuada. Morbi facilisis, sapien ut cursus egestas, enim elit dignissim enim, id ultricies felis nisi nec enim.</p>
+
+		<ul>
+			<li>Ut ultrices ipsum id urna hendrerit, id tincidunt sapien sollicitudin.</li>
+				<p>Ut vel aliquet orci. Nunc id accumsan enim, eu iaculis purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+
+			<li>Etiam porta justo eu interdum iaculis.</li>
+				<p>Nullam sagittis aliquet felis et dignissim. Mauris pharetra convallis posuere.</p>
+
+			<li>Aenean bibendum feugiat scelerisque.</li>
+				<p>Pellentesque auctor neque eget tincidunt accumsan. Aliquam posuere dignissim dolor, ut tincidunt erat semper pulvinar. Cras eu tempus nunc, a porttitor massa. Vivamus suscipit massa sed dui efficitur ultrices.</p>
+		</ul>
+
+		<p>Etiam ullamcorper velit in quam consectetur, mattis iaculis ex ornare. Vivamus sed vestibulum nisl, vel cursus ligula. Aenean condimentum arcu nec urna tincidunt mattis. Suspendisse potenti. Sed a mauris nisl. Etiam sed metus dolor. Cras et congue orci. Fusce accumsan ullamcorper feugiat. Ut ultricies sed arcu varius pharetra. Duis fringilla mollis libero quis elementum.</p>
+
+		Sincerely,<br>
+		Atharva Joshi<br>
+		{Your Phone Number}<br>
+        	{Your email}<br>
+	        <a href='Your LinkedIn URL'>LinkedIn</a> | <a href='{Your GitHub URL}'>GitHub</a><br>
+        	<a href='{Your Medium URL}'>Medium</a><br>
+
+	</body>
+</html>
