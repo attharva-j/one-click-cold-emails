@@ -43,34 +43,35 @@ def send_mail(email_list_df, recipent_file_name):
 
     # get new entries
     emails_to_be_sent = email_list_df[email_list_df['Cold Email Sent?'] != 'Sent']
-    emails_to_be_sent = email_list_df.fillna('')
+    emails_to_be_sent = emails_to_be_sent.fillna('')
     if len(emails_to_be_sent) == 0:
-        logger.info("No recipients to send emails to. Exiting process...")
+        logger.info("No new recipients to send emails to. Exiting process...")
     else:
         email_list = []
         for i in range(len(emails_to_be_sent)):
             email_list.append({emails_to_be_sent.iloc[i]['Email']: [(emails_to_be_sent.iloc[i]['Name']).split(' ')[0],
                                                                     emails_to_be_sent.iloc[i]['Company'],
-                                                                    emails_to_be_sent.iloc[i]['Comma separated position(s) for application if any']]})
-    
+                                                                    emails_to_be_sent.iloc[i][
+                                                                        'Comma separated position(s) for application if any']]})
+
         s = create_session_and_login(sender_data)
-    
+
         if s != -1:
             for email in email_list:
                 recipient = list(email.keys())[0]
                 recipient_name = email[recipient][0]
                 recipient_company = email[recipient][1]
                 recipient_positions = (email[recipient][2]).split(',')
-    
+
                 logger.info(f"Sending email to {recipient_name} ({recipient}) who works at {recipient_company}...")
-    
+
                 try:
                     msg = MIMEMultipart('alternative')
                     msg['Subject'] = f"Bringing Data Analytics and Machine Learning Expertise to {recipient_company}"
                     # msg['Subject'] = f"Hello to you at {recipient_company}!"
                     msg['From'] = "Atharva Joshi <joshi461@umn.edu>"
                     msg['To'] = recipient
-    
+
                     message_html = open("MainEmailHTML.txt", "r").read()
                     message_html = MIMEText(message_html, 'html')
 
@@ -82,7 +83,7 @@ def send_mail(email_list_df, recipent_file_name):
                         link_text = '<p>Below are links to some of the roles from the current job postings which ' \
                                     'I think align with my skills and experience to a great extent.</p>'
                         for i in range(len(recipient_positions)):
-                            link_text += f"<a href={recipient_positions[i]}>Link{i+1}</a> | "
+                            link_text += f"<a href={recipient_positions[i]}>Link{i + 1}</a> | "
                         link_text += "<br>"
 
                     # Open the file to be sent
@@ -97,25 +98,24 @@ def send_mail(email_list_df, recipent_file_name):
                         )
                         msg.attach(part)
 
-    
                     # msg.set_content(message.format(name=recipient_name, company=recipient_company))
                     s.sendmail("Atharva Joshi <joshi461@umn.edu>", recipient,
                                msg.as_string().format(name=recipient_name, company=recipient_company, links=link_text))
-    
+
                     logger.info(f"Email sent to {recipient_name}({recipient}).")
                     # terminating the session
                     # s.quit()
-    
+
                     email_list_df.loc[email_list_df['Email'] == recipient, 'Cold Email Sent?'] = 'Sent'
                 except Exception as e:
                     logger.info(f"Email sending to {recipient_name}({recipient}) failed. Traceback - {e}")
                     logger.info("Terminating smtp server instance...")
                     s.quit()
                     logger.info("Smtp server instance terminated.")
-    
+
             logger.info("Ending session and logging out...")
             s.quit()
-    
+
             try:
                 logger.info("Updating Excel")
                 email_list_df.to_excel(recipent_file_name, index=False)
